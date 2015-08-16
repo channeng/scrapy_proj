@@ -6,7 +6,7 @@ class ClutchSpider(scrapy.Spider):
     name = "clutch"
     allowed_domains = ["clutch.co"]
     start_urls = [
-        "https://clutch.co/web-developers/"
+        'https://clutch.co/web-developers?page=%s' % page for page in xrange(24)
     ]
 
     def parse(self, response):
@@ -20,4 +20,12 @@ class ClutchSpider(scrapy.Spider):
             item['company_name'] = sel.xpath("div/div/h3[@class='company-name']/a/text()").extract()
             item['tagline'] = sel.xpath("div/div/h5[@class='tagline']/text()").extract()
             item['review_rating'] = sel.xpath("div/div/div[@class='rating-reviews']/a[2]/span[@class='rating']/text()").extract()
+            item['review_count'] = sel.xpath("div/div/div[@class='rating-reviews']/a[2]/span[@class='count']/text()").extract()
+            item['country'] = sel.xpath("div/div/span[@class='location-country']/span[@class='country-name']/text()").extract()
+            item['region'] = sel.xpath("div/div/span[@class='location-city']/span[@class='locality']/text()").extract()
+            item['region_code'] = sel.xpath("div/div/span[@class='location-city']/span[@class='region']/text()").extract()
+            item['employees'] = sel.xpath("div/div/span/span[@class='employees']/text()").extract()
+            item['rates'] = sel.xpath("div/div/span[@class='hourly-rate']/text()").extract()
+            item['phone'] = sel.xpath("div/div[@class='col-xs-12 visible-xs phone feature']/span[@class='location-phone']/text()").extract()
+            item['logo_img_link'] = sel.xpath("div/div/div/a/img[@class='img-responsive']/@src").extract()
             yield item
