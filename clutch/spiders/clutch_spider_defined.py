@@ -28,4 +28,5 @@ class ClutchSpider(scrapy.Spider):
             item['rates'] = sel.xpath("div/div/span[@class='hourly-rate']/text()").extract()
             item['phone'] = sel.xpath("div/div[@class='col-xs-12 visible-xs phone feature']/span[@class='location-phone']/text()").extract()
             item['logo_img_link'] = sel.xpath("div/div/div/a/img[@class='img-responsive']/@src").extract()
+            item['company_link'] = sel.xpath("div/div/span[@class='website-link']/a/@href").extract()
             yield item

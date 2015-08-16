@@ -20,3 +20,5 @@ class ClutchItem(scrapy.Item):
     rates = scrapy.Field()
     phone = scrapy.Field()
     logo_img_link = scrapy.Field()
+    company_link = scrapy.Field()
+    founded_at = scrapy.Field()

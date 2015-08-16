@@ -20,5 +20,7 @@ phone = response.xpath("div/div[@class='col-xs-12 visible-xs phone feature']/spa
 logo_img_link = response.xpath("div/div/div/a/img[@class='img-responsive']/@src").extract()
 #prepend 'https:'
 
+company_link = response.xpath("div/div/span[@class='website-link']/a/@href").extract()
+
 next_page = response.xpath("//li[@class='pager-next last']/a/@href").extract()
 
