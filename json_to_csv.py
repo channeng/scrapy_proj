@@ -1,7 +1,9 @@
 import json
 import csv
 
-with open('items2.json','r') as f:
+file_name = raw_input("Which json file would you like to convert?\n> ")
+
+with open(file_name,'r') as f:
 	json_data = json.load(f)
 
 cleaned_data = []
@@ -16,7 +18,9 @@ for company in json_data:
 
 csv_headers = ["company_name", "tagline", "review_rating", "review_count", "country", "region", "region_code", "employees", "rates", "phone", "logo_img_link","company_link","founded_at"]
 
-with open('items2.csv','wb+') as wb:
+output_filename = file_name[:file_name.find(".")]+".csv"
+
+with open(output_filename,'wb+') as wb:
 	writer = csv.writer(wb)
 	writer.writerow(csv_headers)
 	for company in cleaned_data:
